@@ -3,6 +3,8 @@ zmienna = 12.5
 print("Przypisana wartość: zmienna")
 # zad. 2 przy pomocy fstringów (użyta zmienna z 1)
 print(f"\nDodawanie: {2+zmienna} \nOdejmowanie: {3-1} \nMnożenie: {0.5*4} \nDzielenie: {12/3} \nModulo (reszta z dzielenia): {13%3}\nPotęga: {2**3}")
+# zad. 2 przy pomocy % formattingu
+print("\nDodawanie: %i\nOdejmowanie %i\nMnożenie %0.2f\nDzielenie %0.4f\nPotęgowanie %0.2E\nModulo %i\nDzielenie z zaokr. w dół %i" % ((1+2), (2-2), (2.25 * 3), (1/3),(10**20), (50%2), (10//3)))
 # zad. 3
 liczbowy_calkowity = int(13)
 lancuch_znakow = str(liczbowy_calkowity)
