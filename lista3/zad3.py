@@ -1,15 +1,11 @@
-import sys
+def avg(*numbers):
+    try:
+        average = sum(numbers)/len(numbers)
+        parity = "parzysta" if int(average)%2 == 0 else "nieparzysta"
+        print(f"Średnia podanych liczb to {average}. Po konwersji na liczbę całkowitą otrzymujemy {int(average)}, jest to liczba {parity}.\n")
+    except TypeError:
+        print(f"Podane argumenty, {numbers}, są nieprawidłowego typu.\n")
 
-przyjmowane_liczby = input("Podaj liczby, które chcesz uśrednić. Oddzielaj je przecinkami.\n")
-lista_liczb = przyjmowane_liczby.split(",")
-if not przyjmowane_liczby:
-    sys.exit()
-suma = 0
-for l in lista_liczb:
-    suma += float(l)
-srednia = suma / len(lista_liczb)
-print(f"Średnia wynosi {srednia}, przetworzona na l. calkowitą wynosi {int(srednia)}")
-if int(srednia) % 2 == 0:
-    print("Oraz jest parzysta")
-else:
-    print("Oraz jest nieparzysta")
+avg(1,2,3,4)
+avg(100, -10, 30)
+avg("nie jestem liczbą", 2, 3)

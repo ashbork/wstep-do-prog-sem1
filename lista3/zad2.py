@@ -1,19 +1,20 @@
-import sys
 import math
 
-A, B, C = 3, 2, -5
-# sprawdzamy, czy funkcja jest kwadratowa
-if A == 0:
-    print("Funkcja nie jest funkcją kwadratową")
-    sys.exit()
-# kalkulacja wartości delta
-delta = B**2 - 4 * (A * C)
-if delta >= 0:
-    x1 = (-B + math.sqrt(delta))/(2 * A)
-    x2 = (-B - math.sqrt(delta))/(2 * A)
-    if x1 == x2:
-        print("Rozwiązaniem jest {x1}")
-    else:
-        print(f"Rozwiązania to {x1:.2f} oraz {x2:.2f}.")
-else:
-    print("Funkcja nie ma rzeczywistych rozwiązań.")
+def roots(a,b,c):
+    try: 
+        if a == 0:
+            print("Funkcja nie jest f kwadratową (a = 0)")
+            return
+        delta = b**2 - 4 * (a * c)
+        if delta == 0:
+            return(-b / (2 * a))
+        elif delta > 0:
+            return([(-b + math.sqrt(delta))/(2 * a), (-b - math.sqrt(delta))/(2 * a)])
+        else:
+            return("Brak miejsc zerowych")
+    except TypeError:
+        return("Nieprawidłowe argumenty")
+
+print(roots(1,2,1))
+print(roots(1,"a",1))
+print(roots(3,2,1))

@@ -1,12 +1,19 @@
 # zad.1 (w 3.10 użyłbym match case statement)
-wiek_uzytkownika = int(input("Podaj wiek widza:"))
-if wiek_uzytkownika < 0:
-    print("Niewłaściwy wiek.")
-    cena = -1
-elif wiek_uzytkownika < 16:
-    cena = 2.99
-elif wiek_uzytkownika < 64:
-    cena = 5.99
-else:
-    cena = 4.99
-print(cena)
+
+
+def price_by_age(age):
+    try: 
+        if age <= 0:
+            return(-1)
+        elif age < 16:
+            return(2.99)
+        elif age < 64:
+            return(5.99)
+        else:
+            return(4.99)
+    except TypeError:
+        return(-1)
+
+argument = int(input("Podaj wiek widza: "))
+print(price_by_age(argument))
+
