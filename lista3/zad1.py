@@ -1,5 +1,3 @@
-# zad.1 (w 3.10 użyłbym match case statement)
-
 
 def price_by_age(age):
     try: 
