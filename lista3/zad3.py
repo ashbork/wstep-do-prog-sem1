@@ -1,5 +1,9 @@
 def avg(*numbers):
     try:
+        # alternatywna metoda liczenia sumy:
+        # sum = 0
+        # for num in numbers:
+        #   sum += numbers
         average = sum(numbers) / len(numbers)
         parity = "parzysta" if int(average) % 2 == 0 else "nieparzysta"
         print(

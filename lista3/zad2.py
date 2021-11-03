@@ -22,7 +22,7 @@ try:
     print(roots(1, "a", 1))
     print(roots(3, 2, 1))
     print(roots(-1, 0, 0))
-    print(roots())
+    print(roots(0, 1, 2))
 except TypeError:
     print("Nieprawidłowe argumenty w jednej z wywołanych funkcji")
     exit(1)
