@@ -4,7 +4,7 @@ def scroll_list_recursive(target, steps):
         target.insert(0, target[-1])
         target.pop()
         steps -= 1
-        scroll_list_recursive(target, steps)
+        return scroll_list_recursive(target, steps)
     else:
         return target
 
