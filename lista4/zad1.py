@@ -18,7 +18,7 @@ def scroll_list_iterative(target, steps):
 
 
 lista = [1, 2, 3, 4, 5, 6]
-scroll_list_iterative(lista, 1)
+scroll_list_iterative(lista, 2)
 print(lista)
 scroll_list_recursive(lista, 1)
 print(lista)
