@@ -10,8 +10,8 @@ class Prostokat:
         print(f"Ten prostokąt ma wymiary {self.a} x {self.b}.")
         return
 
-# Klasa Kwadrat dziedziczy metodę pole bez żadnych zmian. By nie spowodować błędu wynikającego z braku atrybutu 'b' w klasie Kwadrat nadpisałem metodę __init__,
-# tworząc atrybut 'b' i zapisując go jako równy 'a'.
+# Klasa Kwadrat dziedziczy metodę pole bez żadnych zmian. By nie spowodować błędu wynikającego z braku atrybutu 'b' w
+# klasie Kwadrat nadpisałem metodę __init__, tworząc atrybut 'b' i zapisując go jako równy 'a'.
 class Kwadrat(Prostokat):
     def __init__(self, a):
         self.a = self.b = a

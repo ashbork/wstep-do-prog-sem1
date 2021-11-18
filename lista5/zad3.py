@@ -13,6 +13,7 @@ class Student:
         wartością pusta lista, co pozwala nam operować na ocenach."""
         if not index.isdecimal() or len(index) != 6:
             print("Podany indeks jest nieprawidłowego formatu lub długości")
+            return
         self.fname = fname.title()
         self.lname = lname.title()
         self.index = index
@@ -64,6 +65,6 @@ class Student:
 
 
 jan = Student("Jan", "Kowalski", "123456", ["Analiza Matematyczna", "Miernictwo", "Programowanie"])
-jan.add_grade((1, 3, 2), "Programowandsaie")
+jan.add_grade((1, 3, 2), "Programowanie")
 jan.edit_grade("Programowanie")
 jan.display_grades("Analiza Matematyczna")
