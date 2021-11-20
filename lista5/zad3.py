@@ -44,8 +44,7 @@ class Student:
             if grade_index > len(self.grade_tables[course]) - 1:
                 print("Nie ma oceny o takim indeksie oceny ")
             else:
-                newgrade = int(input("Jaką ocena powinna tu trafić? "))
-                self.grade_tables[course][grade_index] = newgrade
+                self.grade_tables[course][grade_index] = int(input("Jaką ocena powinna tu trafić? "))
                 print("Oceny po zmianie: ")
                 self.display_grades(course)
         else:
