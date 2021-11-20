@@ -28,13 +28,13 @@ class Student:
             course (str): kurs, do którego należy dodać ocenę
 
         'Łapiemy' KeyError jeśli kurs nie występuje jako klucz w słowniku grade_tables obiektu"""
-        try:
+        if course in self.grade_tables.keys():
             if isinstance(grade, tuple):
                 for grad in grade:
                     self.grade_tables[course].append(grad)
             else:
                 self.grade_tables[course].append(grade)
-        except KeyError:
+        else:
             print(f"Student nie uczęszcza na {course} / taki kurs nie istnieje")
 
     def edit_grade(self, course):
@@ -52,7 +52,7 @@ class Student:
             print(f"W kursie {course} nie ma ocen. ")
 
     def display_grades(self, course):
-        try:
+        if course in self.grade_tables.keys():
             if self.grade_tables[course]:
                 print(f"Wyświetlam oceny z kursu: {course}")
                 for index, grade in enumerate(self.grade_tables[course]):
@@ -60,11 +60,11 @@ class Student:
                     print(f"Ocena nr {index}: {grade}")
             else:
                 print(f"W kursie {course} nie ma ocen. ")
-        except KeyError:
+        else:
             print(f"Student nie uczęszcza na {course} / taki kurs nie istnieje")
 
 
 jan = Student("Jan", "Kowalski", "123456", ["Analiza Matematyczna", "Miernictwo", "Programowanie"])
 jan.add_grade((1, 3, 2), "Programowanie")
 jan.edit_grade("Programowanie")
-jan.display_grades("Analiza Matematyczna")
+jan.display_grades("Analiza Matematyczn2312312a")
