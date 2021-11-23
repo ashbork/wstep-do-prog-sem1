@@ -45,7 +45,7 @@ class Admin(Użytkownik):
 
 class Przywileje:
     def __init__(self, przywilej):
-        self.lst = [perm for perm in przywilej]
+        self.lst = przywilej
 
 jan_kowalski = Użytkownik("Jan", "Kowalski", 15, "Polska", "Qwertyuiopas")
 jan_kowalski.opisz_uzytkownika()
