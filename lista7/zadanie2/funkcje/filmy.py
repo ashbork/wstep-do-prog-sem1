@@ -1,0 +1,1 @@
+lista = ["Interstellar", "Erased", "Euphoria"]
