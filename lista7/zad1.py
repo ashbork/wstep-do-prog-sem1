@@ -1,5 +1,5 @@
 from moj_modul import Admin as adm
-# from moj_modul import Użytkownik as usr
+from moj_modul import Użytkownik as usr
 
 # trzy inne sposoby importu:
 # import moj_modul
@@ -29,4 +29,4 @@ kowalski.pozdrow_uzytkownika()
 kowalski.wyswietl_przywileje()
 
 # print(dir(adm))
-# print(isinstance(kowalski, usr))
+print(isinstance(kowalski, usr))
