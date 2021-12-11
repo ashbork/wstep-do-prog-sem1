@@ -4,7 +4,15 @@ import pathlib
 
 
 class Diary:
-    def __init__(self, filename: str) -> None:
+    def __init__(self, filename: str = "default") -> None:
+        """
+        Generates new instance of the Diary class. If passed a filename, it will attempt to load the associated .json file within
+        the current working directory.
+        If one doesn't exist, it'll create a new file with an empty list, ready to be worked on.
+
+        Args:
+            filename (str): the filename of a file containing entries.
+        """        
         self.file = pathlib.Path.cwd() / f"{filename}.json"
         print(self.file)
         if self.file.exists():
@@ -16,6 +24,12 @@ class Diary:
             self._save_diary()
 
     def add_entry(self, content: str):
+        """
+        Adds an entry to the diary, appending it to the entries list and saving.
+
+        Args:
+            content (str): content of the new entry.
+        """        
         self.entries.append({
             "date_and_time": datetime.datetime.now().strftime("%c"),
             "content": content
@@ -29,16 +43,23 @@ class Diary:
         Args:
             desc (bool): decides whether the output should be ascending or descending (by entry's date of creation). 
         """
+        if not self.entries: print("W pliku nie ma jeszcze żadnych wpisów.");
         for index, entry in enumerate(sorted(self.entries, key=lambda entry: entry["date_and_time"], reverse=desc)):
             print(index+1, entry["date_and_time"], entry["content"])
 
     def _save_diary(self):
-        with open(self.file, "w") as cwd:
-            json.dump(self.entries, cwd)
+        """
+        Private method that saves the entries to file.
+        """        
+        with open(self.file, "w") as cwf:
+            json.dump(self.entries, cwf)
 
     def _load_diary(self):
-        with open(self.file, "r") as cwd:
-            self.entries = json.load(cwd)
+        """
+        Private method that saves the entries to file.
+        """        
+        with open(self.file, "r") as cwf:
+            self.entries = json.load(cwf)
 
 
 def interface_with_diary():
