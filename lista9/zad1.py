@@ -23,7 +23,7 @@ class Diary:
             self.entries = []
             self._save_diary()
 
-    def add_entry(self, content: str):
+    def add_entry(self, content: str) -> None:
         """
         Adds an entry to the diary, appending it to the entries list and saving.
 
@@ -36,7 +36,7 @@ class Diary:
         })
         self._save_diary()
 
-    def read_all_entries(self, desc: bool = True):
+    def read_all_entries(self, desc: bool = True) -> None:
         """
         Reads all entries of the diary. Allows for different sorting options.
 
@@ -47,14 +47,14 @@ class Diary:
         for index, entry in enumerate(sorted(self.entries, key=lambda entry: entry["date_and_time"], reverse=desc)):
             print(index+1, entry["date_and_time"], entry["content"])
 
-    def _save_diary(self):
+    def _save_diary(self) -> None:
         """
         Private method that saves the entries to file.
         """        
         with open(self.file, "w") as cwf:
             json.dump(self.entries, cwf)
 
-    def _load_diary(self):
+    def _load_diary(self) -> None:
         """
         Private method that saves the entries to file.
         """        
@@ -63,6 +63,9 @@ class Diary:
 
 
 def interface_with_diary():
+    """
+    Provides an terminal user interface for the Diary class.
+    """    
     current_working_diary = Diary(
         input("Podaj nazwę pliku, na którym chcesz pracować.\n"))
     while (choice := input("Jakie działania na pliku chcesz podjąć? \n 1. Dodaj wpis \n 2. Wyświetl wszystkie wpisy \n 3. Zamknij pamiętnik i wyjdź z programu\n")) != "3":
