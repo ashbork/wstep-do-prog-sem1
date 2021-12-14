@@ -75,7 +75,7 @@ def interface_with_diary():
                 input("Podaj treść nowego wpisu. \n"))
         elif choice == "2":
             desc = True if input(
-                "1. nowe wpisy pierwsze \n2. starsze wpisy pierwsze\n") == "1" else False
+                "1. Nowe wpisy pierwsze \n2. Starsze wpisy pierwsze\n") == "1" else False
             current_working_diary.read_all_entries(desc)
         else:
             print("Nieprawidłowa opcja, spróbuj jeszcze raz.\n")
