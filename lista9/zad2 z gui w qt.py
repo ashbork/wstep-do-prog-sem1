@@ -26,13 +26,15 @@ class Search_Files(QtWidgets.QWidget):
 
     @QtCore.Slot()
     def search_path_for_workfiles(self, path):
-        # First, get the current working directory and append the path parameter.
+        # Get the current working directory and append the path parameter.
         subdir = pathlib.Path(path)
         print(subdir)
-        # Using a list comprehension, return a list of stringified paths relative to the subdirectory (subdir) which are both
+        # Using a list comprehension, return a list of stringified paths
+        # relative to the subdirectory (subdir) which are both
         # .pdf files and contain "praca" in their name.
         results = ""
-        for result in [str(child.relative_to(subdir)) for child in subdir.rglob("*.pdf") if "praca" in child.name.lower()]:
+        for result in [str(child.relative_to(subdir)) for child in subdir.rglob
+                       ("*.pdf") if "praca" in child.name.lower()]:
             results += result + "\n"
         self.text.setText(results)
 
