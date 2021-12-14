@@ -12,7 +12,7 @@ class Diary:
 
         Args:
             filename (str): the filename of a file containing entries.
-        """        
+        """
         self.file = pathlib.Path.cwd() / f"{filename}.json"
         print(self.file)
         if self.file.exists():
@@ -29,7 +29,7 @@ class Diary:
 
         Args:
             content (str): content of the new entry.
-        """        
+        """
         self.entries.append({
             "date_and_time": datetime.datetime.now().strftime("%c"),
             "content": content
@@ -43,21 +43,22 @@ class Diary:
         Args:
             desc (bool): decides whether the output should be ascending or descending (by entry's date of creation). 
         """
-        if not self.entries: print("W pliku nie ma jeszcze żadnych wpisów.");
+        if not self.entries:
+            print("W pliku nie ma jeszcze żadnych wpisów.")
         for index, entry in enumerate(sorted(self.entries, key=lambda entry: entry["date_and_time"], reverse=desc)):
             print(index+1, entry["date_and_time"], entry["content"])
 
     def _save_diary(self) -> None:
         """
         Private method that saves the entries to file.
-        """        
+        """
         with open(self.file, "w") as cwf:
             json.dump(self.entries, cwf)
 
     def _load_diary(self) -> None:
         """
         Private method that saves the entries to file.
-        """        
+        """
         with open(self.file, "r") as cwf:
             self.entries = json.load(cwf)
 
@@ -65,7 +66,7 @@ class Diary:
 def interface_with_diary():
     """
     Provides an terminal user interface for the Diary class.
-    """    
+    """
     current_working_diary = Diary(
         input("Podaj nazwę pliku, na którym chcesz pracować.\n"))
     while (choice := input("Jakie działania na pliku chcesz podjąć? \n 1. Dodaj wpis \n 2. Wyświetl wszystkie wpisy \n 3. Zamknij pamiętnik i wyjdź z programu\n")) != "3":
