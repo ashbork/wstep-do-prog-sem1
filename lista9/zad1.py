@@ -62,7 +62,7 @@ class Diary:
 
     def _load_diary(self) -> None:
         """
-        Private method that saves the entries to file.
+        Private method that loads the entries from file.
         """
         with open(self.file, "r", encoding="UTF-8") as cwf:
             self.entries = json.load(cwf)
