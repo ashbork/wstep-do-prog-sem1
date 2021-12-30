@@ -1,11 +1,13 @@
+from typing import NewType
 from mutagen.mp3 import EasyMP3
-from mutagen.easyid3 import EasyID3
 import pathlib
 
 
 class Model():
-    @staticmethod
-    def get_tags_from_file(path):
+    def __init__(self) -> None:
+        self.currenttags = []
+
+    def get_tags_from_file(self, path):
         if not path:
             return None
         if not path.exists():
@@ -19,21 +21,15 @@ class Model():
                 tags.append(song[key][0])
             else:
                 tags.append("")
+        self.currenttags = tags
         return tags
 
     @staticmethod
     def update_tags_in_file(path, content: str, tagno):
-        nums_to_tags = {
-            0: "title",
-            1: "album",
-            2: "artist",
-            3: "tracknumber",
-            4: "genre",
-            5: "date",
-        }
+        nums_to_tags = ("title", "album", "artist", "tracknumber", "genre", "date")
         tag = nums_to_tags[tagno]
         song = EasyMP3(path)
-        if (tagno == 5 and not valid_date()) or (tagno == 3 and not content.isnumeric()):
+        if (tag == "date" and not valid_date(content)) or (tag == "tracknumber" and not content.isnumeric()):
             return -3
         song[tag] = content
         song.save()
@@ -46,6 +42,6 @@ class Model():
             return path.rename(pathlib.Path(path.parent, f"{song['title'][0]} by {song['artist'][0]}{path.suffix}"))
         return path.rename(pathlib.Path(path.parent, f"{new}{path.suffix}"))
 
-
+ModelType = NewType('Model', Model)
 def valid_date(date):
     return len(date) > 4 or not date.isnumeric()

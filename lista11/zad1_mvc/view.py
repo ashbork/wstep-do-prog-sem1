@@ -1,8 +1,8 @@
 from PySide6 import QtWidgets, QtCore
 import pathlib
+from typing import NewType
 
-
-class Ui_MainWindow(object):
+class View(object):
     def __init__(self, MainWindow):
         """
         UI logic - describes the layout and content of the main window.
@@ -168,3 +168,5 @@ class EditableField(QtWidgets.QTableWidgetItem):
         super().__init__()
         self.setText(content)
         self.setFlags(QtCore.Qt.ItemFlag.ItemIsEnabled | QtCore.Qt.ItemFlag.ItemIsSelectable | QtCore.Qt.ItemFlag.ItemIsEditable)
+
+ViewType = NewType('View', View)
