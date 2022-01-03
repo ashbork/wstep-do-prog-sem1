@@ -4,7 +4,6 @@ import unittest
 
 
 def lu(matrix):
-    print(lu_factor(matrix))
     _, pivot = lu_factor(matrix)
     return pivot
 
