@@ -9,7 +9,7 @@ class Model():
         self.tagtuple = ('title', 'album', 'artist',
                          'tracknumber', 'genre', 'date')
 
-    def get_tags_from_file(self, path) -> Union[Tuple[int, str], List[str], None]:
+    def get_tags_from_file(self, path) -> Tuple[int, str] | List[str] | None:
         if not path:
             # returns None which causes file loading to stop - no file was picked
             return None

@@ -97,7 +97,7 @@ class View(object):
         self.file_indicator.setText(
             u"Currently not editing any file. Select a file to edit its tags.")
 
-    def file_dialog(self) -> Union[pathlib.Path, None]:
+    def file_dialog(self) -> pathlib.Path | None:
         """
         Opens a file dialog that allows the user to choose an .mp3 file. If not cancelled,
         it calls the file handler and allows it to update the UI to match the change.
@@ -110,7 +110,7 @@ class View(object):
             return pathlib.Path(picker.selectedFiles()[0])
         return None
 
-    def draw_new_fields(self, tags: Union[None, List[str]]) -> None:
+    def draw_new_fields(self, tags: None | List[str]) -> None:
         if not tags:
             return
         for index, tag in enumerate(tags):
