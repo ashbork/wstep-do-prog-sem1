@@ -15,10 +15,10 @@ class Model():
             return None
         if not path.exists():
             # returns an error code and the context, nonexistent file
-            return (-1, path)
+            return (-1, path)  # Tuple[int, str]
         if not path.suffix == ".mp3":
             # returns an error code and the context, non-mp3 file
-            return (-2, path)
+            return (-2, path)  # Tuple[int, str]
         song = EasyMP3(path)
         tags = []
         for key in self.tagtuple:
@@ -27,7 +27,7 @@ class Model():
             else:
                 tags.append("")
         self.currenttags = tags
-        return tags
+        return tags  # List[str]
 
     def update_tags_in_file(self, path, content: str, tagno: int) -> Literal[-3, 0]:
         tag = self.tagtuple[tagno]
