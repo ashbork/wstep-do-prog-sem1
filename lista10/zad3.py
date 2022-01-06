@@ -1,52 +1,51 @@
-from scipy.linalg import lu_factor
-import numpy as np
+from numpy import array, array_equal
 import unittest
+from scipy.linalg.decomp_lu import lu_factor
+from scipy.linalg.misc import LinAlgWarning
 
 
-def lu(matrix):
-    _, pivot = lu_factor(matrix)
-    return pivot
+def factor(matrix):
+    lu, _ = lu_factor(matrix)  # type: ignore
+    return lu
 
 
 class LUTestCase(unittest.TestCase):
     def setUp(self) -> None:
         return super().setUp()
 
-    def test_big_matrix(self):
-        """
-        Testing a large, 4x4 matrix
-        """
-        arr = np.array([[2, 5, 8, 7], [5, 2, 2, 8],
-                       [7, 5, 6, 6], [5, 4, 4, 8]])
-        self.assertTrue(np.array_equal(lu(arr), np.array([2, 2, 3, 3])))
+    def test_matrix(self):
+        arr = array([[1, 2], [1, 0]])
+        self.assertTrue(array_equal(factor(arr), array(
+            [[1., 2.], [1., -2.]])))
 
-    def test_small_matrix(self):
+    def test_another_matrix(self):
         """
         Testing a small, 2x2 matrix
         """
-        arr = np.array([[1, 2], [2, 0]])
-        self.assertTrue(np.array_equal(lu(arr), np.array([1, 1])))
+        arr = array([[1, 2], [2, 0]])
+        self.assertTrue(array_equal(factor(arr), array([[2., 0.], [0.5, 2.]])))
 
     def test_zero_array(self):
         """
         Testing a matrix of zeroes
         """
-        arr = np.array([[0, 0], [0, 0]])
-        self.assertTrue(np.array_equal(lu(arr), np.array([0, 1])))
+        arr = array([[0, 0], [0, 0]])
+        with self.assertWarns(LinAlgWarning):
+            factor(arr)
 
     def test_nonsquare_array(self):
         """
         Checking if a bad input value raises an error
         """
         with self.assertRaises(ValueError):
-            lu(np.array([[1, 2, 3], [1, 2, 3]]))
+            factor(array([[1, 2, 3], [1, 2, 3]]))
 
     def test_bad_type(self):
         """
         Checking if a bad input type raises an error
         """
         with self.assertRaises(ValueError):
-            lu("test")
+            factor("test")
 
 
 if __name__ == '__main__':
