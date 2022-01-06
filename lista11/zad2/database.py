@@ -20,7 +20,6 @@ class Database:
         self.path = path
         try:
             self.connection = sqlite3.connect(path)
-            print(f"db in {path} connected successfully")
             self.cursor = self.connection.cursor()
         except Error as e:
             print(f"caught error {e}")
