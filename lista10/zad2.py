@@ -8,7 +8,7 @@ class Employee():
                  last_name: str, annual_salary: Union[float, int]) -> None:
 
         # type validation
-        if not isinstance(first_name, str) or not isinstance(first_name, str):
+        if not isinstance(first_name, str) or not isinstance(last_name, str):
             raise TypeError("name should be of type str")
         if not isinstance(annual_salary, (int, float)):
             raise TypeError("salary should be of numeric type")
