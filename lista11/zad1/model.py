@@ -9,7 +9,7 @@ class Model():
         self.tagtuple = ('title', 'album', 'artist',
                          'tracknumber', 'genre', 'date')
 
-    def get_tags_from_file(self, path) -> Tuple[int, str] | List[str] | None:
+    def get_tags_from_file(self, path) -> tuple[int, str] | list[str] | None:
         if not path:
             # returns None which causes file loading to stop - no file was picked
             return None
@@ -33,10 +33,10 @@ class Model():
         tag = self.tagtuple[tagno]
         song = EasyMP3(path)
         if (tag == "date" and not valid_date(content)) or (tag == "tracknumber" and not content.isnumeric()):
-            return -3
+            return -3  # error code - invalid input
         song[tag] = content
         song.save()
-        return 0
+        return 0  # everything's fine
 
     @staticmethod
     def rename_file(path, new="", auto=False) -> pathlib.Path:

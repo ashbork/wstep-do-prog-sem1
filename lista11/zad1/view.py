@@ -110,7 +110,7 @@ class View(object):
             return pathlib.Path(picker.selectedFiles()[0])
         return None
 
-    def draw_new_fields(self, tags: None | List[str]) -> None:
+    def draw_new_fields(self, tags: None | list[str]) -> None:
         if not tags:
             return
         for index, tag in enumerate(tags):
