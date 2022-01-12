@@ -1,6 +1,5 @@
 import pathlib
 import random
-import sys
 from typing import Iterable
 
 import lorem
@@ -46,8 +45,11 @@ def post_generator(usercount: int, count: int) -> Iterable[str]:
 
 # check for db's existence, quit if it's already there
 if DB_PATH.exists():
-    print("db already exists, exiting")
-    sys.exit()
+    raise FileExistsError(f"database already existent in {DB_PATH}")
+# check for path validity (should end with .sqlite)
+if not DB_PATH.suffix == ".sqlite":
+    raise FileNotFoundError(
+        f"expected an sqlite path (got {DB_PATH})")
 
 with db.Database(DB_PATH) as db:
 
@@ -65,12 +67,10 @@ with db.Database(DB_PATH) as db:
     CREATE TABLE posts (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         content TEXT NOT NULL,
-        user_id INTEGER NOT NULL,
-        FOREIGN KEY (id)
-            REFERENCES użytkownicy (user_id)
-                ON UPDATE RESTRICT
-                ON DELETE RESTRICT
-    )
+        user_id INTEGER,
+        FOREIGN KEY(user_id) REFERENCES users(id)
+            ON UPDATE RESTRICT ON DELETE SET NULL
+    );
     """)
     # constructs a query that will insert random users into the table
     users_query = """INSERT INTO

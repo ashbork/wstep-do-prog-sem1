@@ -12,17 +12,15 @@ class Database:
     def __init__(self, path: str | pathlib.Path) -> None:
         """
         Constructs a new database object, connecting
-        to a given path. If an exception is raised, print it.
+        to a given path.
 
         Args:
             path (str | pathlib.Path): path to the database
         """
         self.path = path
-        try:
-            self.connection = sqlite3.connect(path)
-            self.cursor = self.connection.cursor()
-        except Error as e:
-            print(f"caught error {e}")
+        self.connection = sqlite3.connect(path)
+        self.connection.execute("PRAGMA foreign_keys = 1")
+        self.cursor = self.connection.cursor()
 
     def __enter__(self):
         """
@@ -35,12 +33,9 @@ class Database:
         Returns:
             Database: workable Database object
         """
-        try:
-            self.connection = sqlite3.connect(self.path)
-            self.cursor = self.connection.cursor()
-        except Error as e:
-            print(f"caught error {e}")
-
+        self.connection = sqlite3.connect(self.path)
+        self.connection.execute("PRAGMA foreign_keys = 1")
+        self.cursor = self.connection.cursor()
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
