@@ -1,0 +1,5 @@
+rich
+re
+unittest
+numpy
+scipy
