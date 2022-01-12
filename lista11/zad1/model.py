@@ -1,4 +1,4 @@
-from typing import List, Literal, NewType, Tuple, Union
+from typing import Literal, NewType
 from mutagen.mp3 import EasyMP3
 import pathlib
 

@@ -1,6 +1,6 @@
 from PySide6 import QtWidgets, QtCore
 import pathlib
-from typing import List, NewType, Union
+from typing import NewType
 
 
 class View(object):

@@ -1,4 +1,4 @@
-from beartype import beartype
+# from beartype import beartype
 from model import ModelType
 from view import ViewType
 
@@ -6,7 +6,8 @@ from view import ViewType
 class Controller():
     # typecheck, if any of these two aren't of correct types
     # beartype throws an exception and stops the app from running
-    @beartype
+    # - uncomment if you've got beartype
+    # @beartype
     def __init__(self, model: ModelType, view: ViewType) -> None:
         self.file_loaded = False
         self.currentworkingpath = ""
@@ -16,8 +17,10 @@ class Controller():
         # ignoring all type hints here - for some reason .clicked/.cellChanged aren't
         # recognized as members of widgets, no clue as to why that is
         self.view.pick_file.clicked.connect(self.on_file_btn)  # type: ignore
-        self.view.tag_table.cellChanged.connect(self.on_field_update)  # type: ignore
-        self.view.autorename.clicked.connect(self.on_autorename_btn)  # type: ignore
+        self.view.tag_table.cellChanged.connect(  # type: ignore
+            self.on_field_update)
+        self.view.autorename.clicked.connect(  # type: ignore
+            self.on_autorename_btn)
         self.view.rename.clicked.connect(self.on_rename_btn)  # type: ignore
 
     def on_file_btn(self) -> None:
