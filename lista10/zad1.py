@@ -1,11 +1,19 @@
 import re
+from rich.console import Console
+from rich.rule import Rule
+
+console = Console()
+
+console.print(Rule(title="Regex", align="left"), "")
 
 
 def remove_phrase(input: str, to_remove: str):
     '''Removes a phrase from the input string and shows the amount of occurences'''
     phrases = re.findall(f"({to_remove})", input)
-    print(f"Found {len(phrases)} occurences of the phrase {to_remove}.")
-    print(f"Final phrase is {re.sub(f'({to_remove})', '', input)}\n")
+    console.print(
+        f"Found [red bold]{len(phrases)}[/] occurences of the phrase [red bold]{to_remove}.")
+    console.print(
+        f"Final phrase is [green italic]{re.sub(f'({to_remove})', '', input)}\n")
 
 
 # the pattern is case-sensitive, as shown here:

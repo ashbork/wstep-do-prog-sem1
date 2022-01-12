@@ -5,7 +5,7 @@ from scipy.linalg.misc import LinAlgWarning
 
 
 def factor(matrix):
-    lu, _ = lu_factor(matrix)  # type: ignore
+    lu, _ = lu_factor(matrix)
     return lu
 
 

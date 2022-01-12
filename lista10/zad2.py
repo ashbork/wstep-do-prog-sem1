@@ -1,11 +1,10 @@
 import random
-from typing import Union
 import unittest
 
 
 class Employee():
     def __init__(self, first_name: str,
-                 last_name: str, annual_salary: Union[float, int]) -> None:
+                 last_name: str, annual_salary: float | int) -> None:
 
         # type validation
         if not isinstance(first_name, str) or not isinstance(last_name, str):
