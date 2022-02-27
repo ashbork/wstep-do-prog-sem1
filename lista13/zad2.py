@@ -6,4 +6,4 @@ for num in filter(divby_three_or_five, range(50)):
 print(result)
 
 # alternatywnie (zwięźlej i czytelniej):
-# [num for num in range(50) if num % 3 == 0 and num % 5 == 0]
+# [num for num in range(50) if num % 3 == 0 or num % 5 == 0]

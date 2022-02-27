@@ -1,9 +1,7 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-import csv
 import pandas as pd
 from datetime import datetime
-import matplotlib.dates
 
 with open("artists.csv", newline='') as f:
     artists = pd.read_csv(f).head(10).to_dict()
